@@ -1,32 +1,28 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "./components/ErrorPage";
+import { Home } from "./pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: "Nothing",
-    errorElement: <ErrorPage />
+    element: <Home/>,
+    errorElement: <ErrorPage/>
   },
   {
     path: "/login",
     element: "Nothing",
-    errorElement: <ErrorPage />
   },
   {
-    path: "/comparar",
+    path: "/compare",
     element: "Nothing",
-    errorElement: <ErrorPage />
   },
   {
-    path: "/dados",
+    path: "/data/:id",
     element: "Nothing",
-    errorElement: <ErrorPage />
   }
 ])
 
-
 function App() {
-
   return (
     <>
       <RouterProvider router={router} />

@@ -1,0 +1,7 @@
+h1{
+    transform: .3s;
+}
+
+h1:hover{
+    scale: 1.01;
+}
