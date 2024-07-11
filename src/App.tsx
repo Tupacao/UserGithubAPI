@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import { Home } from "./pages/Home";
+import { Compare } from "./pages/Compare";
+import { Login } from "./pages/Login";
+import { Data } from "./pages/Data";
 
 const router = createBrowserRouter([
   {
@@ -10,15 +13,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: "Nothing",
+    element: <Login/>,
   },
   {
     path: "/compare",
-    element: "Nothing",
+    element: <Compare/>,
   },
   {
     path: "/data/:id",
-    element: "Nothing",
+    element: <Data/>,
   }
 ])
 
