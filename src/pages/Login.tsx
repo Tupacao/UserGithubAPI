@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavBar } from "../components/NavBar"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { User } from "../interfaces"
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Login() {
     const [name, setName] = useState("")
-    const [user, setUser] = useState (null)
+    const [user, setUser] = useState<User>()
 
     const searchMe = () => {
         axios({
@@ -24,21 +25,23 @@ export function Login() {
     }
 
     const setNull = () => {
-        setUser(null)
+        setUser(undefined)
+        setName("")
     }
 
     const setAvatar = () =>{
         {user && 
             localStorage.setItem("urlImage", user.avatar_url)
-            setUser(null)
         }
+        setNull()
+        setName("")
     }
 
     return (
         <>
             <NavBar />
             <InputGroup width={"40%"} m={"10px auto"}>
-                <Input placeholder="Insira o seu nome do GitHub" onChange={(e) => {
+                <Input value={name} placeholder="Insira o seu nome do GitHub" onChange={(e) => {
                     setName(e.target.value)
                 }}/>
                 <InputLeftElement onClick={() => {searchMe()}}>

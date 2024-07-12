@@ -6,12 +6,13 @@ import { CardUser } from "../components/CardUser"
 import { useEffect } from "react"
 import { useState } from "react"
 import axios from "axios"
+import { User } from "../interfaces/index"
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Home() {
 
-    const [users, setUser] = useState([]);
+    const [users, setUser] = useState<User[]>([]);
     const [before, setBefore] = useState(0);
     const [next, setNext] = useState(5);
     const [name, setName] = useState("");

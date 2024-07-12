@@ -3,13 +3,14 @@ import { CardRepo } from "../components/CardRepo"
 import { NavBar } from "../components/NavBar"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Repo, User } from "../interfaces";
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Data() {
     const name = window.location.pathname.split('/').pop()
-    const [user, setUser] = useState(null)
-    const [repos, setRepos] = useState([])
+    const [user, setUser] = useState<User>()
+    const [repos, setRepos] = useState<Repo[]>([])
     const [maxNumber, setMaxNumber] = useState(8)
 
     useEffect(() => {

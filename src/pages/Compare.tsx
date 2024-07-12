@@ -21,11 +21,11 @@ export function Compare() {
         });
     }
 
-    const [value, setValue] = useBoolean(true);
+    const [value, setValue] = useBoolean(true)
     const [name1, setName1] = useState("")
     const [name2, setName2] = useState("")
-    const [user1, setUser1] = useState(null)
-    const [user2, setUser2] = useState(null)
+    const [user1, setUser1] = useState<User>()
+    const [user2, setUser2] = useState<User>()
 
     const changeVisible = () => {
         if(name1 != "" && name2 != ""){
@@ -34,8 +34,8 @@ export function Compare() {
                 searchUser(name1, setUser1)
                 searchUser(name2, setUser2)
             } else {
-                setUser1(null)
-                setUser2(null)
+                setUser1(undefined)
+                setUser2(undefined)
                 setName1("")
                 setName2("")
             }
