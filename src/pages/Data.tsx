@@ -1,8 +1,19 @@
 import { Text, Box, Flex, Image, Button } from "@chakra-ui/react"
 import { CardRepo } from "../components/CardRepo"
 import { NavBar } from "../components/NavBar"
+import axios from "axios";
+import { useEffect } from "react";
 
 export function Data() {
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: `https://api.github.com/users${name}`
+        }).then((response) => {
+            console.log(response.data);
+        });
+    }, [])
+    
     return (
         <>  
             <NavBar/>

@@ -1,8 +1,20 @@
 import { Text, Flex, Input, Box, Stack, FormControl, FormLabel, Button, Image } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { useBoolean } from "@chakra-ui/react";
+import axios from "axios";
+import { useEffect } from "react";
+
 
 export function Compare() {
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: "https://api.github.com/users"
+        }).then((response) => {
+            console.log(response.data);
+        });
+    }, [])
+
     const [value, setValue] = useBoolean(true);
 
     const changeVisible = () => {

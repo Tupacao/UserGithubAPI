@@ -2,8 +2,19 @@ import { Text, Box, Flex, Button, InputGroup, Input, InputLeftElement, Image, St
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavBar } from "../components/NavBar"
+import axios from "axios"
+import { useEffect } from "react"
+
 
 export function Login() {
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: "https://api.github.com/users"
+        }).then((response) => {
+            console.log(response.data);
+        });
+    }, [])
     return (
         <>
             <NavBar />

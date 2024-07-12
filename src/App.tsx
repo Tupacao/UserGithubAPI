@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <Compare/>,
   },
   {
-    path: "/data/:id",
+    path: "/data/:name",
     element: <Data/>,
   }
 ])
