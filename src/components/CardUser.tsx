@@ -6,12 +6,12 @@ import { User } from "../interfaces/index"
 export function CardUser({user} : {user : User}) {
     return (
         <>
-            <Flex bg={"gray"} p={"10px"} width={"100%"} borderRadius={"full"} justifyContent={"space-between"}>
+            <Flex bg={"gray"} p={"10px"} width={"60%"} borderRadius={"full"} justifyContent={"space-between"}>
                 <Flex alignItems={"center"} gap={"10px"}>
                     <Image src={user.avatar_url} boxSize={"16"} borderRadius={"full"} />
                     <Text>{user.login}</Text>
                 </Flex>
-                <Flex gap={"30px"} alignItems={"center"}>
+                {/* <Flex gap={"30px"} alignItems={"center"}>
                     <Box textAlign={"center"}>
                         <Text>{user.followers}</Text>
                         <Text>Followers</Text>
@@ -24,14 +24,13 @@ export function CardUser({user} : {user : User}) {
                         <Text>{user.numberRepos}</Text>
                         <Text>NumberRepos</Text>
                     </Box>
-                </Flex>
+                </Flex> */}
                 <Box margin={"auto 0px"}>
-                    <Button as="a" href="#">
+                    <Button as="a" href={"/data/" + user.login}>
                         <FontAwesomeIcon size="xl" icon={faArrowRight} />
                     </Button>
                 </Box>
             </Flex>
-            
         </>
     )
 }

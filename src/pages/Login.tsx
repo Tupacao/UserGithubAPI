@@ -3,37 +3,60 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyin
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavBar } from "../components/NavBar"
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Login() {
-    useEffect(() => {
+    const [name, setName] = useState("")
+    const [user, setUser] = useState (null)
+
+    const searchMe = () => {
         axios({
             method: "get",
-            url: "https://api.github.com/users"
+            url: `https://api.github.com/users/${name}`,
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`
+            }
         }).then((response) => {
-            console.log(response.data);
+            setUser(response.data)
         });
-    }, [])
+    }
+
+    const setNull = () => {
+        setUser(null)
+    }
+
+    const setAvatar = () =>{
+        {user && 
+            localStorage.setItem("urlImage", user.avatar_url)
+            setUser(null)
+        }
+    }
+
     return (
         <>
             <NavBar />
             <InputGroup width={"40%"} m={"10px auto"}>
-                <Input placeholder="Insira o seu nome do GitHub"></Input>
-                <InputLeftElement>
+                <Input placeholder="Insira o seu nome do GitHub" onChange={(e) => {
+                    setName(e.target.value)
+                }}/>
+                <InputLeftElement onClick={() => {searchMe()}}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </InputLeftElement>
             </InputGroup>
-            <Box bg={"blue"} p={"8px"} margin={"auto"} width={"60%"} justifyContent={"center"}>
-                <Flex gap={"20px"} alignItems={"center"} mb={"10px"} flexDirection={"column"}>
-                    <Image src="https://bit.ly/dan-abramov" boxSize={"40"} borderRadius={"full"} />
-                    <Text>Nome</Text>
-                </Flex>
-                <Stack direction={"row"} justifyContent={"center"}>
-                    <Button>Sim, sou eu</Button>
-                    <Button>Não, não sou eu</Button>
-                </Stack>
-            </Box>
+            {user && (
+                <Box bg={"blue"} p={"8px"} margin={"auto"} width={"60%"} justifyContent={"center"}>
+                    <Flex gap={"20px"} alignItems={"center"} mb={"10px"} flexDirection={"column"}>
+                        <Image src={user.avatar_url} boxSize={"40"} borderRadius={"full"} />
+                        <Text>{user.login}</Text>
+                    </Flex>
+                    <Stack direction={"row"} justifyContent={"center"}>
+                        <Button onClick={() => {setAvatar()}}>Sim, sou eu</Button>
+                        <Button onClick={() => {setNull()}}>Não, não sou eu</Button>
+                    </Stack>
+                </Box>
+            )}
         </>
     )
 }

@@ -2,36 +2,65 @@ import { Text, Box, Flex, Image, Button } from "@chakra-ui/react"
 import { CardRepo } from "../components/CardRepo"
 import { NavBar } from "../components/NavBar"
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Data() {
+    const name = window.location.pathname.split('/').pop()
+    const [user, setUser] = useState(null)
+    const [repos, setRepos] = useState([])
+    const [maxNumber, setMaxNumber] = useState(8)
+
     useEffect(() => {
         axios({
             method: "get",
-            url: `https://api.github.com/users${name}`
+            url: `https://api.github.com/users/${name}`,
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`
+            }
         }).then((response) => {
-            console.log(response.data);
+            setUser(response.data)
         });
     }, [])
-    
+
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: `https://api.github.com/users/${name}/repos`,
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`
+            }
+        }).then((response) => {
+            setRepos(response.data)
+        });
+    }, [])
+
+    const showAll = () => {
+        setMaxNumber(repos.length)
+    }
+
     return (
-        <>  
-            <NavBar/>
-            <Box width={"60%"} margin={"10px auto"}>
-                <Flex gap={"20px"} alignItems={"center"}>
-                    <Image src="https://bit.ly/dan-abramov" boxSize={"20"} borderRadius={"full"} />
-                    <Text>Name</Text>
-                </Flex>
-                <Flex gap={"10px"} flexDirection={"column"} mt={"20px"}>
-                    <CardRepo/>
-                    <CardRepo/>
-                    <CardRepo/>
-                    <CardRepo/>
-                </Flex>
-                <Flex justifyContent={"center"} mt={"20px"}>
-                    <Button colorScheme="blue"> Ver Mais </Button>
-                </Flex>
-            </Box>
+        <>
+            <NavBar />
+            {user &&
+                <Box width={"60%"} margin={"10px auto"}>
+                    <Flex gap={"20px"} alignItems={"center"}>
+                        <Image src={user.avatar_url} boxSize={"20"} borderRadius={"full"} />
+                        <Text>{user.login}</Text>
+                    </Flex>
+                    <Flex gap={"10px"} flexDirection={"column"} mt={"20px"}>
+                        {repos.slice(0 , maxNumber).map((data) => (
+                            <CardRepo key={data.id} repo={data} />
+                        ))}
+                    </Flex>
+                    <Flex justifyContent={"center"} mt={"20px"}>
+                        <Button colorScheme="blue" display={maxNumber >= repos.length ? "none" : "block"} onClick={() => {
+                            showAll()
+                        }}> Ver Mais </Button>
+                    </Flex>
+                </Box>
+            }
         </>
     )
 }

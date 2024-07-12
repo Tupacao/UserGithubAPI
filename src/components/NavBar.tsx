@@ -1,8 +1,11 @@
-import { Flex, Link, Circle } from "@chakra-ui/react"
+import { Flex, Link, Circle, Image } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/free-regular-svg-icons"
 
 export function NavBar() {
+
+    const URLIAMGE = localStorage.getItem("urlImage")
+
     return (
         <>
             <Flex gap={"10px"} justifyContent={"end"} p={"10px"} bg={"gray"}>
@@ -13,7 +16,7 @@ export function NavBar() {
                 </Flex>
                 <Link href="/login">
                     <Circle transition={".3s"} _hover={{ transform: "scale(1.05)" }} size={"40px"} bg={"blue"} color={"white"}>
-                        <FontAwesomeIcon icon={faUser} />
+                        {!URLIAMGE ? <FontAwesomeIcon icon={faUser} /> : <Image src={URLIAMGE} borderRadius={"full"}/>}
                     </Circle>
                 </Link>
             </Flex>
