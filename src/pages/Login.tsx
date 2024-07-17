@@ -3,7 +3,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyin
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavBar } from "../components/NavBar"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { User } from "../interfaces"
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;

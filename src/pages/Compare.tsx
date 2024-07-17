@@ -2,7 +2,7 @@ import { Text, Flex, Input, Box, Stack, FormControl, FormLabel, Button, Image } 
 import { NavBar } from "../components/NavBar"
 import { useBoolean } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User } from "../interfaces";
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;

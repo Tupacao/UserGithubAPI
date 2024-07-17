@@ -1,4 +1,4 @@
-import { Flex, Box, Button, Input, InputGroup, InputLeftElement } from "@chakra-ui/react"
+import { Flex, Box, Button, Input, InputGroup, InputRightElement, useBoolean } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRight, faMagnifyingGlass, faArrowLeft } from "@fortawesome/free-solid-svg-icons"
@@ -7,15 +7,19 @@ import { useEffect } from "react"
 import { useState } from "react"
 import axios from "axios"
 import { User } from "../interfaces/index"
+import { color, delay } from "framer-motion"
+import { colors } from "../colors"
+import { BeforeButton, NextButton } from "../components/NextBefore"
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function Home() {
 
-    const [users, setUser] = useState<User[]>([]);
-    const [before, setBefore] = useState(0);
-    const [next, setNext] = useState(5);
-    const [name, setName] = useState("");
+    const [users, setUser] = useState<User[]>([])
+    const [before, setBefore] = useState(0)
+    const [next, setNext] = useState(5)
+    const [name, setName] = useState("")
+    const [input, setInput] = useBoolean(false)
 
     useEffect(() => {
         axios({
@@ -46,16 +50,24 @@ export function Home() {
     return (
         <>
             <NavBar />
-            <Box width={"80%"} margin={"auto"}>
-                <InputGroup margin={"30px 0px"} width={"40%"}>
-                    <Input placeholder="Insira o nome do GitHub" onChange={(e) => {
+            <Box width={"100%"} margin={"auto"}>
+                <InputGroup margin={"20px auto"} width={"40%"}>
+                    <Input placeholder="Insira o nome do GitHub" _placeholder={{color: colors.secondary}} bg={colors.acento_dark} color={colors.secondary} onChange={(e) => {
                         setName(e.target.value)
                     }} />
-                    <InputLeftElement onClick={() => {
-                        search()
+                    <InputRightElement onClick={() => {
+                        if (name != "" && name.length > 2) {
+                            search()
+                            setInput.toggle()
+                            delay(() => { setInput.toggle() }, 2000)
+                        } else {
+                            alert("Por favor insira um nome válido")
+                        }
                     }}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </InputLeftElement>
+                        <Button bg={"none"} _hover={""} _active={""} isLoading={input}>
+                            <FontAwesomeIcon color={colors.secondary} icon={faMagnifyingGlass} />
+                        </Button>
+                    </InputRightElement>
                 </InputGroup>
                 <Flex flexDir={"column"} gap={"20px"} alignItems={"center"} justifyContent={"space-between"} height={"500px"}>
                     {users.slice(before, next).map((user) => (
@@ -63,22 +75,8 @@ export function Home() {
                     ))}
                 </Flex>
                 <Flex justifyContent={"center"} gap={"10px"} m={"10px auto"}>
-                    <Button isDisabled={before == 0} colorScheme="blue" variant={"solid"} onClick={() => {
-                        if (before != 0) {
-                            setBefore(before - 5)
-                            setNext(next - 5)
-                        }
-                    }}>
-                        <FontAwesomeIcon icon={faArrowLeft} />
-                    </Button>
-                    <Button isDisabled={next >= users.length} colorScheme="blue" variant={"solid"} onClick={() => {
-                        if (next < users.length) {
-                            setBefore(before + 5)
-                            setNext(next + 5)
-                        }
-                    }}>
-                        <FontAwesomeIcon icon={faArrowRight} />
-                    </Button>
+                    <BeforeButton next={next} before={before} setBefore={setBefore} setNext={setNext}/>
+                    <NextButton tam={users.length} next={next} before={before} setBefore={setBefore} setNext={setNext}/>
                 </Flex>
             </Box>
         </>
