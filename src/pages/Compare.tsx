@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Stack, Button, Image } from "@chakra-ui/react"
+import { Flex, Box, Stack, Button} from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { useBoolean } from "@chakra-ui/react";
 import axios from "axios";
