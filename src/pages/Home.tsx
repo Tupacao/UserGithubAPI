@@ -48,7 +48,7 @@ export function Home() {
             <NavBar />
             <Box width={"100%"} margin={"auto"}>
                 <InputGitHub name={name} setName={setName} search={search} />
-                <Flex flexDir={"column"} gap={"20px"} alignItems={"center"} justifyContent={"space-between"} height={"500px"}>
+                <Flex flexDir={"column"} alignItems={"center"} justifyContent={"space-between"} height={"450px"}>
                     {users.slice(before, next).map((user) => (
                         <CardUser key={user.id} user={user} />
                     ))}

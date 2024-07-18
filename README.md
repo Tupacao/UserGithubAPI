@@ -1,23 +1,44 @@
 # Criação de uma pequena aplicação com a api de usuários do GitHub
 
 
-## Expanding the ESLint configuration
+## Paginação
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A aplicação apresenta sua páginação dívidia em 4 partes, sendo essas a "Home", "Data", "Login" e "Compare"
 
-- Configure the top-level `parserOptions` property like this:
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home/>,
+    errorElement: <ErrorPage/>
   },
-}
+  {
+    path: "/login",
+    element: <Login/>,
+  },
+  {
+    path: "/compare",
+    element: <Compare/>,
+  },
+  {
+    path: "/data/:name",
+    element: <Data/>,
+  }
+])
 ```
+
+## Home
+![Home]("./src/assets/Home.png")
+## Data
+![Home]("./src/assets/Data.png")
+## login
+![Home]("./src/assets/Login.png")
+## Compare
+![Home]("./src/assets/comp1.png")
+![Home]("./src/assets/comp2.png")
+
+
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
