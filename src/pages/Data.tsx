@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Repo, User } from "../interfaces";
 import { colors } from "../colors";
 import { BeforeButton, NextButton } from "../components/NextBefore";
+import { TextCard } from "../components/TextCard";
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
@@ -52,20 +53,11 @@ export function Data() {
                     <Flex flexDir={"column"} justifyContent={"center"} gap={"20px"}>
                         <Flex alignItems={"center"} gap={"20px"}>
                             <Image src={user.avatar_url} boxSize={"20"} borderRadius={"full"} />
-                            <Text>{user.login}</Text>
+                            <Text fontSize={"20px"} fontWeight={"bold"}>{user.login}</Text>
                         </Flex>
-                        <Box textAlign={"center"}>
-                            <Text>{followers}</Text>
-                            <Text>Followears</Text>
-                        </Box>
-                        <Box textAlign={"center"}>
-                            <Text>{followings}</Text>
-                            <Text>Following</Text>
-                        </Box>
-                        <Box textAlign={"center"}>
-                            <Text>{repos.length}</Text>
-                            <Text>repos</Text>
-                        </Box>
+                        <TextCard name="Seguidores" data={followers}/>
+                        <TextCard name="Seguindo" data={followings}/>
+                        <TextCard name="Repositorios" data={repos.length}/>
                     </Flex>
                     <Flex gap={"10px"} flexDirection={"column"} mt={"20px"} width={"60%"} justifyContent={"center"}>
                         <Flex flexDir={"column"} gap={"10px"} height={"500px"}>
