@@ -1,4 +1,4 @@
-import { Text, Box, Flex, Image, Button, Spinner } from "@chakra-ui/react"
+import { Text, Flex, Image, Spinner } from "@chakra-ui/react"
 import { CardRepo } from "../components/CardRepo"
 import { NavBar } from "../components/NavBar"
 import axios from "axios";
@@ -52,12 +52,12 @@ export function Data() {
                 <Flex justifyContent={"space-around"} height={"550px"}>
                     <Flex flexDir={"column"} justifyContent={"center"} gap={"20px"}>
                         <Flex alignItems={"center"} gap={"20px"}>
-                            <Image src={user.avatar_url} boxSize={"20"} borderRadius={"full"} />
+                            <Image src={user.avatar_url} boxSize={"40"} borderRadius={"full"} />
                             <Text fontSize={"20px"} fontWeight={"bold"}>{user.login}</Text>
                         </Flex>
-                        <TextCard name="Seguidores" data={followers}/>
-                        <TextCard name="Seguindo" data={followings}/>
-                        <TextCard name="Repositorios" data={repos.length}/>
+                        <TextCard name="Seguidores" data={followers} />
+                        <TextCard name="Seguindo" data={followings} />
+                        <TextCard name="Repositorios" data={repos.length} />
                     </Flex>
                     <Flex gap={"10px"} flexDirection={"column"} mt={"20px"} width={"60%"} justifyContent={"center"}>
                         <Flex flexDir={"column"} gap={"10px"} height={"500px"}>
