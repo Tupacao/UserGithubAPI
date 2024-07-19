@@ -29,14 +29,43 @@ const router = createBrowserRouter([
 ```
 
 ## Home
-![Home]("./src/assets/Home.png")
+![Home](./src/assets/Home.png)
+> Página principal do site que o usuário pode pesquisar um nome e verificar se existe na API do GitHUb
+> ```java
+useEffect(() => {
+        axios({
+            method: "get",
+            url: "https://api.github.com/users",
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`
+            }
+        }).then((response) => {
+            setUser(response.data)
+        });
+    }, [])
+
+    const search = () => {
+        axios({
+            method: "get",
+            url: `https://api.github.com/search/users?q=${name}`,
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`
+            }
+        }).then((response) => {
+            setUser(response.data.items)
+            setBefore(0)
+            setNext(5)
+        })
+    }
+    ```
+
 ## Data
-![Home]("./src/assets/Data.png")
-## login
-![Home]("./src/assets/Login.png")
+![Data](./src/assets/Data.png)
+## Login
+![login]("./src/assets/Login.png")
 ## Compare
-![Home]("./src/assets/comp1.png")
-![Home]("./src/assets/comp2.png")
+![Comp1]("./src/assets/comp1.png")
+![Comp2]("./src/assets/comp2.png")
 
 
 
