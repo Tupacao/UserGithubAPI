@@ -29,9 +29,9 @@ const router = createBrowserRouter([
 ```
 
 ## Home
+Página principal do site que o usuário pode pesquisar um nome e verificar se existe na API do GitHUb
 ![Home](./src/assets/Home.png)
-> Página principal do site que o usuário pode pesquisar um nome e verificar se existe na API do GitHUb
-> ```java
+```js
 useEffect(() => {
         axios({
             method: "get",
@@ -57,7 +57,7 @@ useEffect(() => {
             setNext(5)
         })
     }
-    ```
+```
 
 ## Data
 ![Data](./src/assets/Data.png)
