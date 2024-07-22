@@ -1,5 +1,17 @@
 # Criação de uma pequena aplicação com a api de usuários do GitHub
 
+## Dependencias
+
+Para instalar as dependências, execute o seguinte comando:
+```sh
+    npm install
+    npm install axios
+    npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion
+    npm install @fortawesome/fontawesome-svg-core
+    npm install @fortawesome/free-solid-svg-icons
+    npm install @fortawesome/free-regular-svg-icons
+    npm install @fortawesome/free-brands-svg-icons
+```
 
 ## Paginação
 
