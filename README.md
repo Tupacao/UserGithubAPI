@@ -12,9 +12,9 @@ Para instalar as dependências, execute o seguinte comando:
     npm install @fortawesome/free-regular-svg-icons
     npm install @fortawesome/free-brands-svg-icons
 ```
-Crie na pasta raiz um arquivo
-> .env
-> insira a váriavel VITE_GITHUB_TOKEN={[GitHub Tokens](https://github.com/settings/tokens)}
+Crie na pasta raiz
+> 1) Arquivo ".env"
+> 2) Insira a váriavel VITE_GITHUB_TOKEN={[token](https://github.com/settings/tokens)}
 
 
 ## Paginação
