@@ -43,7 +43,7 @@ export function Login() {
             <NavBar />
             <InputGitHub name={name} setName={setName} search={search} />
             {user && (
-                <Box bg={colors.primary} p={"30px"} margin={"100px auto"} width={"40%"} justifyContent={"center"} borderRadius={"20px"}>
+                <Box bg={colors.primary} p={"30px"} margin={"100px auto"} width={["80%", "40%"]} justifyContent={"center"} borderRadius={"20px"}>
                     <Flex gap={"20px"} alignItems={"center"} mb={"10px"} flexDirection={"column"}>
                         <Image src={user.avatar_url} boxSize={"40"} borderRadius={"full"} />
                         <Text color={colors.secondary} fontSize={"24px"} fontWeight={"bold"}>{user.login}</Text>

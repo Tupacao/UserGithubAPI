@@ -1,4 +1,4 @@
-import { Flex, Box, Stack, Button} from "@chakra-ui/react"
+import { Flex, Box, Stack, Button } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { useBoolean } from "@chakra-ui/react";
 import axios from "axios";
@@ -49,7 +49,7 @@ export function Compare() {
         <>
             <NavBar />
             <Box height={"90vh"} display={value ? "block" : "none"}>
-                <Flex flexDir={"column"} justifyContent={"center"} width={"60%"} margin={"auto"} height={"90%"}>
+                <Flex flexDir={"column"} justifyContent={"center"} width={["90%", "60%"]} margin={"auto"} height={"90%"}>
                     <Stack>
                         <UserInput text={"Usuário 1"} name={name1} set={setName1} />
                         <UserInput text={"Usuário 2"} name={name2} set={setName2} />
@@ -59,12 +59,11 @@ export function Compare() {
                     </Stack>
                 </Flex>
             </Box>
-
-            <Box pt={"10px"} display={!value ? "block" : "none"}>
-                <Flex justifyContent={"end"}>
-                    <Button mr={"10px"} onClick={changeVisible} colorScheme="purple">Voltar</Button>
-                </Flex>
-                <Flex justifyContent={"space-around"} gap={"25px"} width={"60%"} margin={"auto"}>
+            <Flex justifyContent={"end"} m={"10px 0px"}>
+                <Button mr={"10px"} onClick={changeVisible} colorScheme="purple">Voltar</Button>
+            </Flex>
+            <Flex display={!value ? "flex" : "none"} height={"70vh"} justifyContent={"center"} alignItems={"center"}>
+                <Flex justifyContent={"space-around"} gap={["2px","25px"]} width={["95%", "60%"]}>
                     {user1 && user2 && (
                         <>
                             <BoxUser user1={user1} user2={user2} />
@@ -72,7 +71,7 @@ export function Compare() {
                         </>
                     )}
                 </Flex>
-            </Box>
+            </Flex>
         </>
     )
 }

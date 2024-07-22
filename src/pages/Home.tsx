@@ -46,13 +46,16 @@ export function Home() {
     return (
         <>
             <NavBar />
-            <Box width={"100%"} margin={"auto"}>
+            <Box>
                 <InputGitHub name={name} setName={setName} search={search} />
-                <Flex flexDir={"column"} alignItems={"center"} justifyContent={"space-between"} height={"450px"}>
-                    {users.slice(before, next).map((user) => (
-                        <CardUser key={user.id} user={user} />
-                    ))}
-                    {users.length === 0 ? "Não encontramos resultados" : ""}
+                <Flex height={"80vh"} flexDirection={"column"} justifyContent={"center"}>
+                    <Flex flexDir={"column"} alignItems={"center"} justifyContent={"space-around"} width={"100%"} height={"450px"}>
+                        {users.slice(before, next).map((user) => (
+                            <CardUser key={user.id} user={user} />
+                        ))}
+                        {users.length === 0 ? "Não encontramos resultados" : ""}
+
+                    </Flex>
                 </Flex>
                 <Flex justifyContent={"center"} gap={"10px"} m={"10px auto"}>
                     <BeforeButton next={next} before={before} setBefore={setBefore} setNext={setNext} />

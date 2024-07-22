@@ -49,28 +49,32 @@ export function Data() {
         <>
             <NavBar />
             {user == undefined ? <Flex justifyContent={"center"} mt={"20px"}><Spinner size={"xl"} color={colors.acento} /></Flex> :
-                <Flex justifyContent={"space-around"} height={"550px"}>
-                    <Flex flexDir={"column"} justifyContent={"center"} gap={"20px"}>
-                        <Flex alignItems={"center"} gap={"20px"}>
-                            <Image src={user.avatar_url} boxSize={"40"} borderRadius={"full"} />
-                            <Text fontSize={"20px"} fontWeight={"bold"}>{user.login}</Text>
+                <Flex height={"90vh"} justifyContent={"center"} alignItems={"center"}>
+                    <Flex justifyContent={"space-around"} height={"550px"} width={"100%"} flexDirection={["column", "row"]}>
+                        <Flex flexDir={"column"} justifyContent={"center"} gap={"20px"} alignItems={"center"}>
+                            <Flex alignItems={"center"} gap={"20px"}>
+                                <Image src={user.avatar_url} boxSize={"40"} borderRadius={"full"} />
+                                <Text fontSize={"20px"} fontWeight={"bold"}>{user.login}</Text>
+                            </Flex>
+                            <Flex gap={["20px", "0px"]} flexDirection={["row", "column"]}>
+                                <TextCard name="Seguidores" data={followers} />
+                                <TextCard name="Seguindo" data={followings} />
+                                <TextCard name="Repositorios" data={repos.length} />
+                            </Flex>
                         </Flex>
-                        <TextCard name="Seguidores" data={followers} />
-                        <TextCard name="Seguindo" data={followings} />
-                        <TextCard name="Repositorios" data={repos.length} />
-                    </Flex>
-                    <Flex gap={"10px"} flexDirection={"column"} mt={"20px"} width={"60%"} justifyContent={"center"}>
-                        <Flex flexDir={"column"} gap={"10px"} height={"500px"}>
-                            {repos.slice(before, next).map((data) => (
-                                <CardRepo key={data.id} repo={data} />
-                            ))}
+                        <Flex gap={"10px"} flexDirection={"column"} mt={"20px"} width={["100%","60%"]} justifyContent={"center"}>
+                            <Flex flexDir={"column"} gap={"10px"} height={"500px"}>
+                                {repos.slice(before, next).map((data) => (
+                                    <CardRepo key={data.id} repo={data} />
+                                ))}
+                            </Flex>
+                            <Flex justifyContent={"center"} mt={"10px"} gap={"10px"}>
+                                <BeforeButton next={next} before={before} setBefore={setBefore} setNext={setNext} />
+                                <NextButton tam={repos.length} next={next} before={before} setBefore={setBefore} setNext={setNext} />
+                            </Flex>
                         </Flex>
-                        <Flex justifyContent={"center"} mt={"10px"} gap={"10px"}>
-                            <BeforeButton next={next} before={before} setBefore={setBefore} setNext={setNext} />
-                            <NextButton tam={repos.length} next={next} before={before} setBefore={setBefore} setNext={setNext} />
-                        </Flex>
-                    </Flex>
 
+                    </Flex>
                 </Flex>
             }
         </>

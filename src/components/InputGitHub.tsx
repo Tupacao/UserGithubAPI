@@ -10,10 +10,10 @@ export function InputGitHub({ name, setName, search }: { name: string, setName: 
     
     return (
         <>
-            <InputGroup width={"40%"} m={"10px auto"}>
+            <InputGroup width={["80%", "80%", "40%"]} m={"10px auto"}>
                 <Input placeholder="Insira o nome do GitHub" _placeholder={{ color: colors.secondary }} bg={colors.acento_dark} color={colors.secondary} onChange={(e) => {
                     setName(e.target.value)
-                }} />
+                }} value={name}/>
                 <InputRightElement onClick={() => {
                     if (name != "" && name.length > 2) {
                         search()

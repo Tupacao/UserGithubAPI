@@ -8,7 +8,7 @@ export function CardUser({ user }: { user: User }) {
 
     return (
         <>
-            <Flex bg={colors.primary} p={"10px"} transition={".2s"} width={"60%"} borderRadius={"full"} justifyContent={"space-between"} _hover={{transform: "scale(1.02)"}} as="a" href={"/data/" + user.login} >
+            <Flex bg={colors.primary} p={"10px"} transition={".2s"} width={["95%","60%"]} borderRadius={"full"} justifyContent={"space-between"} _hover={{transform: "scale(1.02)"}} as="a" href={"/data/" + user.login} >
                 <Flex alignItems={"center"} gap={"10px"}>
                     <Image src={user.avatar_url} boxSize={"16"} borderRadius={"full"} />
                     <Text color={colors.secondary}>{user.login}</Text>
